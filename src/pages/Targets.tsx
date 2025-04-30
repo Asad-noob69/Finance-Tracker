@@ -3,7 +3,7 @@ import { useFinance } from '../contexts/FinanceContext';
 import { Target } from '../types';
 
 const Targets: React.FC = () => {
-  const { targets, transactions, summary, addTarget, updateTarget, deleteTarget } = useFinance();
+  const { targets, transactions, addTarget, updateTarget, deleteTarget } = useFinance();
   const [showForm, setShowForm] = useState(false);
   const [editingTarget, setEditingTarget] = useState<Target | null>(null);
   const [targetAlerts, setTargetAlerts] = useState<{[key: string]: {show: boolean, message: string, type: 'warning' | 'success'}}>({}); 

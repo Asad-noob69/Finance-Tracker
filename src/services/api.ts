@@ -196,8 +196,9 @@ export const TargetAPI = {
   create: async (target: Omit<Target, 'id'>): Promise<Target> => {
     try {
       return apiHelpers.post<Target>('/targets', {
-        name: target.name,
         amount: target.amount,
+        category: target.category,
+        createdAt: target.createdAt,
         month: target.month,
         year: target.year,
       });
