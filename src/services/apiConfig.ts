@@ -1,8 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 
 // const API_URL = import.meta.env.VITE_APP_URL || 'http://localhost:5000/api'; //local
-const API_URL = import.meta.env.VITE_APP_URL || 'finance-tracker-backend-production-1cb3.up.railway.app/api';
-
+const API_URL = import.meta.env.VITE_APP_URL || 'https://finance-tracker-backend-production-1cb3.up.railway.app/api';
 const createApiClient = (): AxiosInstance => {
   const config: AxiosRequestConfig = {
     baseURL: API_URL,
