@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 
 // const API_URL = import.meta.env.VITE_APP_URL || 'http://localhost:5000/api'; //local
-const API_URL = import.meta.env.VITE_APP_URL || 'https://finance-tracker-backend-production-1cb3.up.railway.app/api';
+const API_URL = import.meta.env.VITE_API_URL || 'https://finance-tracker-backend-production-1cb3.up.railway.app/api';
 
 // Helper to ensure all paths are properly formatted
 const normalizePath = (path: string): string => {
@@ -18,8 +18,11 @@ const createApiClient = (): AxiosInstance => {
     },
   };
 
+  console.log('API Client created with baseURL:', config.baseURL);
+
   const instance = axios.create(config);
 
+  // Add request logging interceptor
   instance.interceptors.request.use(
     (config) => {
       const token = localStorage.getItem('financeTrackerToken');
@@ -27,6 +30,10 @@ const createApiClient = (): AxiosInstance => {
         console.log('Adding token to request:', config.url, token.slice(0, 10) + '...');
         config.headers.Authorization = `Bearer ${token}`;
       }
+      
+      // Log full request URL for debugging
+      console.log('Full request URL:', `${config.baseURL}${config.url}`);
+      
       return config;
     },
     (error) => {
